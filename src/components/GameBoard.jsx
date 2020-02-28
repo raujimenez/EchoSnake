@@ -7,6 +7,7 @@ import pointOnBody from './helper/pointOnBody.js';
 import renderBodyPoints from './helper/renderBodyPoints.jsx';
 import renderFruitPoint from './helper/renderFruitPoint.jsx';
 import pointInBoard from './helper/pointInBoard.js';
+
 import './styles/GameBoard.css';
 
 function GameBoard(props) {
@@ -23,9 +24,8 @@ function GameBoard(props) {
     const [currentDirection, setCurrentDirection] = useState(UP);
     const [fruitPoint, setFruitPoint] = useState([0, 0]);
 
-    function updateHead(changeX, changeY) {
-        const lastPoint = bodyPoints[bodyPoints.length - 1]
-        const newPoint = [lastPoint[0] + changeX, lastPoint[1] + changeY];
+    function updateHead(newX, newY) {
+        const newPoint = [newX, newY];
         if (newPoint[0] === fruitPoint[0] && newPoint[1] === fruitPoint[1]) {
             setBodyPoints([...bodyPoints, newPoint]);      
             setFruitPoint(generateFruit(widthHook[0], heightHook[0], board));
@@ -36,32 +36,44 @@ function GameBoard(props) {
         renderBodyPoints(bodyPoints, board);  
     }
 
-    function handleDirection(event) {
-        const currentHead = bodyPoints[bodyPoints.length - 1];
-        const action = event.keyCode;
-        if (action === LEFT) {
-            if (currentDirection !== RIGHT) {
-                setCurrentDirection(LEFT);
-                updateHead(-1, 0);
+    function directionAction(direction, oppositeDirection, newX, newY) {
+        if(pointInBoard(newX, newY, widthHook[0], heightHook[0])){
+            if(!pointOnBody(newX, newY, bodyPoints)) {
+                if(bodyPoints.length > 1) {
+                    if (currentDirection !== oppositeDirection) {
+                        setCurrentDirection(direction);
+                        updateHead(newX, newY);
+                    }    
+                } else {
+                    // single point can go in any direction
+                    setCurrentDirection(direction);
+                    updateHead(newX, newY); 
+                }
             }
+            else {
+                alert('you lost')
+            }
+        }
+        else {
+            alert('you lost')
+        }
+    }
+
+    function handleDirection(event) {
+        const [headX, headY] = bodyPoints[bodyPoints.length - 1];
+        const action = event.keyCode;
+
+        if (action === LEFT) {
+            directionAction(LEFT, RIGHT, headX - 1, headY);
         }
         else if (action === UP) {
-            if (currentDirection !== DOWN){
-                setCurrentDirection(UP);
-                updateHead(0, -1);
-            }
+            directionAction(UP, DOWN, headX, headY - 1);
         }
         else if (action === RIGHT) {
-            if (currentDirection !== LEFT) {
-                setCurrentDirection(RIGHT);
-                updateHead(1, 0);
-            }
+            directionAction(RIGHT, LEFT, headX + 1, headY);
         }
         else if (action == DOWN) {
-            if (currentDirection !== UP) {
-                setCurrentDirection(DOWN);
-                updateHead(0, 1);
-            }
+            directionAction(DOWN, UP, headX, headY + 1);
         }
     }
 
