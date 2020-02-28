@@ -16,7 +16,7 @@ function GameBoard(props) {
     const {timeHook, heightHook, widthHook} = useContext(GameInfoContext); 
     
     // start in the middle
-    const board = boardGenerator(heightHook[0], widthHook[0]);
+    let board = boardGenerator(heightHook[0], widthHook[0]);
     const midpointX = Math.floor(widthHook[0] / 2);
     const midpointY = Math.floor(heightHook[0] / 2);
 
@@ -36,15 +36,21 @@ function GameBoard(props) {
         renderBodyPoints(bodyPoints, board);  
     }
 
+    function restartGame() {
+        setBodyPoints([[midpointX, midpointY]]);
+        setFruitPoint(generateFruit(widthHook[0], heightHook[0], bodyPoints));
+        setCurrentDirection(UP);
+    }
+
     function directionAction(direction, oppositeDirection, newX, newY) {
-        if(pointInBoard(newX, newY, widthHook[0], heightHook[0])){
+        if(pointInBoard(newX, newY, widthHook[0] - 1, heightHook[0] - 1)){
             if(bodyPoints.length > 1) {
                 if (currentDirection !== oppositeDirection) {
                     if(!pointOnBody(newX, newY, bodyPoints)) {
                         setCurrentDirection(direction);
                         updateHead(newX, newY);
                     }else {
-                        alert('you lost')
+                        restartGame();
                     }
                 }
             }
@@ -55,7 +61,7 @@ function GameBoard(props) {
              }
         }
         else {
-            alert('you lost')
+            restartGame();
         }
     }
 
