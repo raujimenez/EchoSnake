@@ -5,12 +5,16 @@ function GridPoint(props) {
     const col = props.column;
     const containsBody = props.body;
     const containsFruit = props.fruit;
+    const portalDestination = props.portalDestination;
 
     const GridPointStyles = {
         gridRow: row,
         gridColumn: col,
         padding: '10px',
-        backgroundColor: containsBody ? 'green' : containsFruit ? 'red' : 'whitesmoke',
+        backgroundColor: containsBody ? 'green' : 
+                         containsFruit ? 'red' : 
+                         portalDestination ? 'orange':
+                         'whitesmoke',
         borderStyle: 'solid',
         borderWidth: '0.1px'
 

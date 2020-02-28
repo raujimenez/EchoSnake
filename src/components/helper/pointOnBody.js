@@ -1,4 +1,4 @@
-function pointOnBody(pointX, pointY, bodyPoints) {
+function pointOn(bodyPoints, pointX, pointY) {
     for (let bodyPoint of bodyPoints) {
         if (pointX === bodyPoint[0] && pointY === bodyPoint[1]) {
             return true;
@@ -7,4 +7,4 @@ function pointOnBody(pointX, pointY, bodyPoints) {
     return false;
 }
 
-export default pointOnBody;
+export default pointOn;

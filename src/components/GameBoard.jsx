@@ -3,15 +3,16 @@ import GameInfoContext from '../context/GameInfoContext.jsx';
 
 import boardGenerator from  './helper/boardGenerator.jsx'
 import generateFruit from './helper/generateFruit.js';
-import pointOnBody from './helper/pointOnBody.js';
+import pointOn from './helper/pointOnBody.js';
 import renderBodyPoints from './helper/renderBodyPoints.jsx';
 import renderFruitPoint from './helper/renderFruitPoint.jsx';
 import pointInBoard from './helper/pointInBoard.js';
+import renderPortalDestination from './helper/renderPortalDestination.jsx';
 
 import './styles/GameBoard.css';
 
 function GameBoard(props) {
-    const [LEFT, UP, RIGHT, DOWN] = [37, 38, 39, 40];
+    const [SPACE, LEFT, UP, RIGHT, DOWN] = [32, 37, 38, 39, 40];
     
     const {timeHook, heightHook, widthHook} = useContext(GameInfoContext); 
     
@@ -23,6 +24,7 @@ function GameBoard(props) {
     const [bodyPoints, setBodyPoints] = useState([[midpointX, midpointY]]);
     const [currentDirection, setCurrentDirection] = useState(UP);
     const [fruitPoint, setFruitPoint] = useState([0, 0]);
+    const [portalDestination, setPortalDestination] = useState([null, null]);
 
     function updateHead(newX, newY) {
         const newPoint = [newX, newY];
@@ -33,7 +35,6 @@ function GameBoard(props) {
         else {
             setBodyPoints([...bodyPoints.filter((point, index) => index !== 0), newPoint]);      
         }
-        renderBodyPoints(bodyPoints, board);  
     }
 
     function restartGame() {
@@ -46,10 +47,11 @@ function GameBoard(props) {
         if(pointInBoard(newX, newY, widthHook[0] - 1, heightHook[0] - 1)){
             if(bodyPoints.length > 1) {
                 if (currentDirection !== oppositeDirection) {
-                    if(!pointOnBody(newX, newY, bodyPoints)) {
+                    if(!pointOn(bodyPoints, newX, newY)) {
                         setCurrentDirection(direction);
                         updateHead(newX, newY);
-                    }else {
+                    }
+                    else {
                         restartGame();
                     }
                 }
@@ -78,6 +80,14 @@ function GameBoard(props) {
         else if (action === DOWN) {
             directionAction(DOWN, UP, headX, headY + 1);
         }
+        else if (action === SPACE) {
+            if (portalDestination[0] === null) {
+                setPortalDestination([headX, headY]);
+            } else {
+                directionAction(DOWN, UP, portalDestination[0], portalDestination[1]);
+                setPortalDestination([null, null]);
+            }
+        }
     }
 
     function handleDirection(event) {
@@ -101,6 +111,7 @@ function GameBoard(props) {
 
     renderBodyPoints(bodyPoints, board);
     renderFruitPoint(fruitPoint, board);
+    renderPortalDestination(board, portalDestination);
 
     const gameBoardStyles = {
         paddingTop: '10px',

@@ -1,4 +1,4 @@
-import pointOnBody from './pointOnBody.js';
+import pointOn from './pointOnBody.js';
 
 function generateFruit(width, height, bodyPoints) {
     let spawnedOnBody = true;
@@ -8,7 +8,7 @@ function generateFruit(width, height, bodyPoints) {
         // could be a better way but i am just running and gunning
         const potentialX = Math.floor(Math.random() * width);
         const potentialY = Math.floor(Math.random() * height); 
-        if (!pointOnBody(potentialX, potentialY, bodyPoints)) {
+        if (!pointOn(bodyPoints, potentialX, potentialY)) {
             finalX = potentialX;
             finalY = potentialY;
             spawnedOnBody = false;
