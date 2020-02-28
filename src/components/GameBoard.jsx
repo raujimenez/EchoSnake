@@ -41,6 +41,7 @@ function GameBoard(props) {
         setBodyPoints([[midpointX, midpointY]]);
         setFruitPoint(generateFruit(widthHook[0], heightHook[0], bodyPoints));
         setCurrentDirection(UP);
+        setPortalDestination([null, null]);
     }
 
     function directionAction(direction, oppositeDirection, newX, newY) {
