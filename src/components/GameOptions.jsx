@@ -21,7 +21,7 @@ function GameOptions(props) {
     }
 
     const changeTime = setBoundaries(0.5, 10, setTime);
-    const changeHeight = setBoundaries(10, 25, setHeight);
+    const changeHeight = setBoundaries(10, 20, setHeight);
     const changeWidth = setBoundaries(10, 25, setWidth);
 
     function resetSettings() {

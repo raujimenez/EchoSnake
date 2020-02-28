@@ -5,7 +5,7 @@
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto auto;
-    align-content: stretch;
+    align-content: space-around;
 }
 
 .gameSetting {
