@@ -6,27 +6,20 @@ import generateFruit from './helper/generateFruit.js';
 import pointOnBody from './helper/pointOnBody.js';
 import renderBodyPoints from './helper/renderBodyPoints.jsx';
 import renderFruitPoint from './helper/renderFruitPoint.jsx';
-
+import pointInBoard from './helper/pointInBoard.js';
 import './styles/GameBoard.css';
 
 function GameBoard(props) {
-    // used on keypress
     const [LEFT, UP, RIGHT, DOWN] = [37, 38, 39, 40];
     
     const {timeHook, heightHook, widthHook} = useContext(GameInfoContext); 
     
-    const gameBoardStyles = {
-        paddingTop: '10px',
-        gridTemplateRows: `${heightHook[0]}`,
-        gridTemplateColumns: `${widthHook[0]}`
-    }
-
     // start in the middle
     const board = boardGenerator(heightHook[0], widthHook[0]);
     const midpointX = Math.floor(widthHook[0] / 2);
     const midpointY = Math.floor(heightHook[0] / 2);
+
     const [bodyPoints, setBodyPoints] = useState([[midpointX, midpointY]]);
-    
     const [currentDirection, setCurrentDirection] = useState(UP);
     const [fruitPoint, setFruitPoint] = useState([0, 0]);
 
@@ -35,7 +28,7 @@ function GameBoard(props) {
         const newPoint = [lastPoint[0] + changeX, lastPoint[1] + changeY];
         if (newPoint[0] === fruitPoint[0] && newPoint[1] === fruitPoint[1]) {
             setBodyPoints([...bodyPoints, newPoint]);      
-            setFruitPoint(generateFruit(widthHook[0], heightHook[0]));
+            setFruitPoint(generateFruit(widthHook[0], heightHook[0], board));
         }
         else {
             setBodyPoints([...bodyPoints.filter((point, index) => index !== 0), newPoint]);      
@@ -85,6 +78,12 @@ function GameBoard(props) {
 
     renderBodyPoints(bodyPoints, board);
     renderFruitPoint(fruitPoint, board);
+
+    const gameBoardStyles = {
+        paddingTop: '10px',
+        gridTemplateRows: `${heightHook[0]}`,
+        gridTemplateColumns: `${widthHook[0]}`
+    }
 
     return (
         <div className='GameBoard' style={gameBoardStyles}>
