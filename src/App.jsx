@@ -8,8 +8,8 @@ import './App.css';
 
 function App() {
   const timeHook = useState(1);
-  const heightHook = useState(10);
-  const widthHook = useState(10);
+  const heightHook = useState(20);
+  const widthHook = useState(25);
 
   const values = {
     timeHook,
