@@ -1,19 +1,19 @@
 import pointOnBody from './pointOnBody.js';
 
-function generateFruit(width, height, board) {
-    let spawnedOnBody = false;
+function generateFruit(width, height, bodyPoints) {
+    let spawnedOnBody = true;
     let finalX = 1;
     let finalY = 1;
     do {
         // could be a better way but i am just running and gunning
         const potentialX = Math.floor(Math.random() * width);
         const potentialY = Math.floor(Math.random() * height); 
-        if (!pointOnBody(potentialX, potentialY, board)) {
+        if (!pointOnBody(potentialX, potentialY, bodyPoints)) {
             finalX = potentialX;
             finalY = potentialY;
-            spawnedOnBody = true;
+            spawnedOnBody = false;
         }
-    } while(!spawnedOnBody);
+    } while(spawnedOnBody);
 
     return [finalX, finalY];
 }

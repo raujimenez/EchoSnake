@@ -41,7 +41,7 @@ function GameOptions(props) {
             <span className='gameSetting' id='timeSetting'>
                 Time (sec):
                 <button id='timeDecrease' onClick={() => changeTime(time - 0.1)}>-</button>
-                <div className='Display'>{time}</div>
+                <div className='Display'>{time.toFixed(1)}</div>
                 <button id='timeIncrease' onClick={() => changeTime(time + 0.1)}>+</button>
 
             </span>

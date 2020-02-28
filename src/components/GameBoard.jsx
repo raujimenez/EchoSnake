@@ -28,7 +28,7 @@ function GameBoard(props) {
         const newPoint = [newX, newY];
         if (newPoint[0] === fruitPoint[0] && newPoint[1] === fruitPoint[1]) {
             setBodyPoints([...bodyPoints, newPoint]);      
-            setFruitPoint(generateFruit(widthHook[0], heightHook[0], board));
+            setFruitPoint(generateFruit(widthHook[0], heightHook[0], bodyPoints));
         }
         else {
             setBodyPoints([...bodyPoints.filter((point, index) => index !== 0), newPoint]);      
@@ -69,7 +69,7 @@ function GameBoard(props) {
         else if (action === RIGHT) {
             directionAction(RIGHT, LEFT, headX + 1, headY);
         }
-        else if (action == DOWN) {
+        else if (action === DOWN) {
             directionAction(DOWN, UP, headX, headY + 1);
         }
     }
