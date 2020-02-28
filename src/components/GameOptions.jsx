@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import GameInfoContext from '../context/GameInfoContext.jsx';
 
-import GameOptionsStyles from './styles/GameOptions.css';
+import './styles/GameOptions.css';
 
 function GameOptions(props) {
     const [time, setTime] = useState(1);
@@ -38,26 +38,26 @@ function GameOptions(props) {
 
     return (
         <div className='GameOptions'>
-            <span class='gameSetting' id='timeSetting'>
+            <span className='gameSetting' id='timeSetting'>
                 Time (sec):
                 <button id='timeDecrease' onClick={() => changeTime(time - 0.5)}>-</button>
-                <div class='Display'>{time}</div>
+                <div className='Display'>{time}</div>
                 <button id='timeIncrease' onClick={() => changeTime(time + 0.5)}>+</button>
 
             </span>
-            <span class='gameSetting' id='heightSetting'>
+            <span className='gameSetting' id='heightSetting'>
                 Height:
                 <button id='heightDecrease' onClick={() => changeHeight(height - 1)}>-</button>
-                <div class='Display'>{height}</div>
+                <div className='Display'>{height}</div>
                 <button id='heightIncrease' onClick={() => changeHeight(height + 1)}>+</button>
             </span>
-            <span class='gameSetting' id='widthSetting'>
+            <span className='gameSetting' id='widthSetting'>
                 Width:
                 <button id='widthDecrease' onClick={() => changeWidth(width - 1)}>-</button>
-                <div class='Display'>{width}</div>
+                <div className='Display'>{width}</div>
                 <button id='widthIncrease' onClick={() => changeWidth(width + 1)}>+</button>
             </span>
-            <span class='gameSetting' id='gamerSetters'>
+            <span className='gameSetting' id='gamerSetters'>
                 <button id='resetGameButton' onClick={resetSettings}>Reset Values</button>
                 <button id='newGameButton' onClick={updateGameSettingContext}>New game</button>
             </span>

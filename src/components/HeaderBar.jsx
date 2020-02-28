@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderBarStyles from './styles/HeaderBar.css';
+import './styles/HeaderBar.css';
 
 function HeaderBar(props) {
     return (
