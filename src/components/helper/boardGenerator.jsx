@@ -9,6 +9,7 @@ function boardGenerator(height, width) {
             board[i][j] = (<GridPoint row={i + 1} column={j + 1} body={false} fruit={false} />)
         }
     }
+    return board;
 }
 
 export default boardGenerator;
