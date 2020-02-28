@@ -43,6 +43,8 @@ function GameBoard(props) {
                     if(!pointOnBody(newX, newY, bodyPoints)) {
                         setCurrentDirection(direction);
                         updateHead(newX, newY);
+                    }else {
+                        alert('you lost')
                     }
                 }
             }
