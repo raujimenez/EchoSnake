@@ -10,7 +10,7 @@ function GridPoint(props) {
         gridRow: row,
         gridColumn: col,
         padding: '10px',
-        backgroundColor: containsBody ? 'green' : 'whitesmoke',
+        backgroundColor: containsBody ? 'green' : containsFruit ? 'red' : 'whitesmoke',
         borderStyle: 'solid',
         borderWidth: '0.1px'
 
