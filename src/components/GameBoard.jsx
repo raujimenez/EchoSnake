@@ -38,31 +38,26 @@ function GameBoard(props) {
 
     function directionAction(direction, oppositeDirection, newX, newY) {
         if(pointInBoard(newX, newY, widthHook[0], heightHook[0])){
-            if(!pointOnBody(newX, newY, bodyPoints)) {
-                if(bodyPoints.length > 1) {
-                    if (currentDirection !== oppositeDirection) {
+            if(bodyPoints.length > 1) {
+                if (currentDirection !== oppositeDirection) {
+                    if(!pointOnBody(newX, newY, bodyPoints)) {
                         setCurrentDirection(direction);
                         updateHead(newX, newY);
-                    }    
-                } else {
-                    // single point can go in any direction
-                    setCurrentDirection(direction);
-                    updateHead(newX, newY); 
+                    }
                 }
             }
             else {
-                alert('you lost')
-            }
+                    // single point can go in any direction
+                    setCurrentDirection(direction);
+                    updateHead(newX, newY); 
+             }
         }
         else {
             alert('you lost')
         }
     }
 
-    function handleDirection(event) {
-        const [headX, headY] = bodyPoints[bodyPoints.length - 1];
-        const action = event.keyCode;
-
+    function changeOnAction(action, headX, headY) {
         if (action === LEFT) {
             directionAction(LEFT, RIGHT, headX - 1, headY);
         }
@@ -75,6 +70,12 @@ function GameBoard(props) {
         else if (action == DOWN) {
             directionAction(DOWN, UP, headX, headY + 1);
         }
+    }
+
+    function handleDirection(event) {
+        const [headX, headY] = bodyPoints[bodyPoints.length - 1];
+        const action = event.keyCode;
+        changeOnAction(action, headX, headY)
     }
 
     useEffect(() => {
