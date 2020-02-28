@@ -38,34 +38,30 @@ function GameBoard(props) {
 
     function handleDirection(event) {
         const currentHead = bodyPoints[bodyPoints.length - 1];
-
-        switch(event.keyCode){
-            case LEFT:
-                if (currentDirection !== RIGHT) {
-                    setCurrentDirection(LEFT);
-                    updateHead(-1, 0);
-                }
-                break;
-            case UP:
-                if (currentDirection !== DOWN){
-                    setCurrentDirection(UP);
-                    updateHead(0, -1);
-                }
-                break;
-            case RIGHT:
-                if (currentDirection !== LEFT) {
-                    setCurrentDirection(RIGHT);
-                    updateHead(1, 0);
-                }
-                break;
-            case DOWN:
-                if (currentDirection !== UP) {
-                    setCurrentDirection(DOWN);
-                    updateHead(0, 1);
-                }
-                break;
-            default:
-                break;
+        const action = event.keyCode;
+        if (action === LEFT) {
+            if (currentDirection !== RIGHT) {
+                setCurrentDirection(LEFT);
+                updateHead(-1, 0);
+            }
+        }
+        else if (action === UP) {
+            if (currentDirection !== DOWN){
+                setCurrentDirection(UP);
+                updateHead(0, -1);
+            }
+        }
+        else if (action === RIGHT) {
+            if (currentDirection !== LEFT) {
+                setCurrentDirection(RIGHT);
+                updateHead(1, 0);
+            }
+        }
+        else if (action == DOWN) {
+            if (currentDirection !== UP) {
+                setCurrentDirection(DOWN);
+                updateHead(0, 1);
+            }
         }
     }
 
