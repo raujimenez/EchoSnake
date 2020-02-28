@@ -4,7 +4,7 @@ import GameInfoContext from '../context/GameInfoContext.jsx';
 import './styles/GameOptions.css';
 
 function GameOptions(props) {
-    const [time, setTime] = useState(1);
+    const [time, setTime] = useState(0.5);
     const [height, setHeight] = useState(20);
     const [width, setWidth] = useState(25);
 
@@ -20,14 +20,14 @@ function GameOptions(props) {
         }
     }
 
-    const changeTime = setBoundaries(0.5, 10, setTime);
+    const changeTime = setBoundaries(0.1, 1, setTime);
     const changeHeight = setBoundaries(10, 20, setHeight);
     const changeWidth = setBoundaries(10, 35, setWidth);
 
     function resetSettings() {
-        setTime(1);
-        setHeight(10);
-        setWidth(10);
+        setTime(0.5);
+        setHeight(20);
+        setWidth(25);
     }
 
     function updateGameSettingContext() {
@@ -40,9 +40,9 @@ function GameOptions(props) {
         <div className='GameOptions'>
             <span className='gameSetting' id='timeSetting'>
                 Time (sec):
-                <button id='timeDecrease' onClick={() => changeTime(time - 0.5)}>-</button>
+                <button id='timeDecrease' onClick={() => changeTime(time - 0.1)}>-</button>
                 <div className='Display'>{time}</div>
-                <button id='timeIncrease' onClick={() => changeTime(time + 0.5)}>+</button>
+                <button id='timeIncrease' onClick={() => changeTime(time + 0.1)}>+</button>
 
             </span>
             <span className='gameSetting' id='heightSetting'>
