@@ -5,7 +5,7 @@ import './styles/GameOptions.css';
 
 function GameOptions(props) {
     const [time, setTime] = useState(1);
-    const [height, setHeight] = useState(15);
+    const [height, setHeight] = useState(20);
     const [width, setWidth] = useState(25);
 
     // game settings should update gameboard so we need context

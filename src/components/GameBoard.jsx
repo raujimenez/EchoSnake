@@ -80,8 +80,14 @@ function GameBoard(props) {
 
     useEffect(() => {
         document.addEventListener("keydown", handleDirection)
+        const interval = setInterval(() => {
+            const [headX, headY] = bodyPoints[bodyPoints.length - 1];
+            changeOnAction(currentDirection, headX, headY);
+        }, timeHook[0] * 1000);
+
         return function cleanup() {
             document.removeEventListener("keydown", handleDirection);
+            clearInterval(interval)
         }
     });
 
