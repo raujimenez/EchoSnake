@@ -3,6 +3,7 @@
     grid-row: 1;
     grid-column: span 3;
     display: grid;
+    padding: 10px;
     grid-template-columns: auto auto auto;
     grid-template-rows: 100%;
 }
