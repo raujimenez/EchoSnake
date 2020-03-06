@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import GameInfoContext from '../context/GameInfoContext.jsx';
 
-import boardGenerator from  './helper/boardGenerator.jsx'
+import boardGenerator from  './helper/boardGenerator.js';
 import generateFruit from './helper/generateFruit.js';
 import pointOn from './helper/pointOnBody.js';
 import renderGridPoints from './helper/renderGridPoints.jsx';
