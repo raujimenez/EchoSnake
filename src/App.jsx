@@ -7,7 +7,7 @@ import GameInfoContext from './context/GameInfoContext.jsx';
 import './App.css';
 
 function App() {
-  const timeHook = useState(1);
+  const timeHook = useState(0.30);
   const heightHook = useState(20);
   const widthHook = useState(25);
 
