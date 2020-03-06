@@ -93,7 +93,7 @@ function GameBoard(props) {
             if (portalDestination[0] === null) {
                 setPortalDestination([headX, headY]);
             } else {
-                directionAction(DOWN, UP, portalDestination[0], portalDestination[1]);
+                directionAction(currentDirection, -1, portalDestination[0], portalDestination[1]);
                 setPortalDestination([null, null]);
             }
         }
