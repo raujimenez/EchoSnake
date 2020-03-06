@@ -4,10 +4,11 @@ import GameInfoContext from '../context/GameInfoContext.jsx';
 import boardGenerator from  './helper/boardGenerator.jsx'
 import generateFruit from './helper/generateFruit.js';
 import pointOn from './helper/pointOnBody.js';
-import renderBodyPoints from './helper/renderBodyPoints.jsx';
-import renderFruitPoint from './helper/renderFruitPoint.jsx';
+import renderGridPoints from './helper/renderGridPoints.jsx';
+import addPortalPoint from './helper/addPortalPoint.js';
+import addFruitPoint from './helper/addFruitPoint.js';
+import addBodyPoints from './helper/addBodyPoints.js';
 import pointInBoard from './helper/pointInBoard.js';
-import renderPortalDestination from './helper/renderPortalDestination.jsx';
 
 import './styles/GameBoard.css';
 
@@ -17,7 +18,9 @@ function GameBoard(props) {
     const {timeHook, heightHook, widthHook} = useContext(GameInfoContext); 
     
     // start in the middle
-    let board = boardGenerator(heightHook[0], widthHook[0]);
+    // change board to use state so that on rerender it updates new game settings.
+    // going to need to modify helper/
+    const [board, setBoard] = useState(boardGenerator(heightHook[0], widthHook[0]));
     const midpointX = Math.floor(widthHook[0] / 2);
     const midpointY = Math.floor(heightHook[0] / 2);
 
@@ -26,11 +29,14 @@ function GameBoard(props) {
     const [fruitPoint, setFruitPoint] = useState([0, 0]);
     const [portalDestination, setPortalDestination] = useState([null, null]);
 
+    let boardGridPoints = []
+
     function updateHead(newX, newY) {
         const newPoint = [newX, newY];
         if (newPoint[0] === fruitPoint[0] && newPoint[1] === fruitPoint[1]) {
             setBodyPoints([...bodyPoints, newPoint]);      
             setFruitPoint(generateFruit(widthHook[0], heightHook[0], bodyPoints));
+            
         }
         else {
             setBodyPoints([...bodyPoints.filter((point, index) => index !== 0), newPoint]);      
@@ -42,6 +48,8 @@ function GameBoard(props) {
         setFruitPoint(generateFruit(widthHook[0], heightHook[0], bodyPoints));
         setCurrentDirection(UP);
         setPortalDestination([null, null]);
+        setBoard(boardGenerator(heightHook[0], widthHook[0]));
+        boardGridPoints = renderGridPoints(board, bodyPoints, fruitPoint, portalDestination);
     }
 
     function directionAction(direction, oppositeDirection, newX, newY) {
@@ -110,9 +118,13 @@ function GameBoard(props) {
         }
     });
 
-    renderBodyPoints(bodyPoints, board);
-    renderFruitPoint(fruitPoint, board);
-    renderPortalDestination(board, portalDestination);
+
+    addBodyPoints(board, bodyPoints);
+    addPortalPoint(board, portalDestination);
+    addFruitPoint(board, fruitPoint);
+
+    boardGridPoints = renderGridPoints(board, bodyPoints, fruitPoint, portalDestination);
+
 
     const gameBoardStyles = {
         paddingTop: '10px',
@@ -122,7 +134,7 @@ function GameBoard(props) {
 
     return (
         <div className='GameBoard' style={gameBoardStyles}>
-            {board}
+            {boardGridPoints}
         </div>
     )
 }
