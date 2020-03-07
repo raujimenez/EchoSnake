@@ -40,13 +40,13 @@ export default function HeaderBar() {
                     <Typography variant="h6" className={classes.title}>
                         EchoSnake
           </Typography>
-                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="twitter">
+                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="Twitter">
                         <TwitterIcon />
                     </IconButton>
-                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="themeSwitch">
+                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="ThemeSwitch">
                         <Brightness4Icon />
                     </IconButton>
-                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="menu" href={githubLink}>
+                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="GitHub" href={githubLink}>
                         <GitHubIcon />
                     </IconButton>
                 </Toolbar>
