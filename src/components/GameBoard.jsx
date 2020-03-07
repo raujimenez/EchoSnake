@@ -4,7 +4,7 @@ import GameInfoContext from '../context/GameInfoContext.jsx';
 import boardGenerator from  './helper/boardGenerator.js';
 import generateFruit from './helper/generateFruit.js';
 import pointOn from './helper/pointOnBody.js';
-import renderGridPoints from './helper/renderGridPoints.jsx';
+import createGridPoints from './helper/createGridPoints.jsx';
 import addPortalPoint from './helper/addPortalPoint.js';
 import addFruitPoint from './helper/addFruitPoint.js';
 import addBodyPoints from './helper/addBodyPoints.js';
@@ -49,7 +49,7 @@ function GameBoard(props) {
         setCurrentDirection(UP);
         setPortalDestination([null, null]);
         setBoard(boardGenerator(heightHook[0], widthHook[0]));
-        boardGridPoints = renderGridPoints(board, bodyPoints, fruitPoint, portalDestination);
+        boardGridPoints = createGridPoints(board, bodyPoints, fruitPoint, portalDestination);
     }
 
     function directionAction(direction, oppositeDirection, newX, newY) {
@@ -123,7 +123,7 @@ function GameBoard(props) {
     addPortalPoint(board, portalDestination);
     addFruitPoint(board, fruitPoint);
 
-    boardGridPoints = renderGridPoints(board, bodyPoints, fruitPoint, portalDestination);
+    boardGridPoints = createGridPoints(board, bodyPoints, fruitPoint, portalDestination);
 
 
     const gameBoardStyles = {

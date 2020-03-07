@@ -1,7 +1,7 @@
 import React from 'react';
 import GridPoint from '../GridPoint.jsx';
 
-function renderGridPoints(board, bodyPoints, fruitPoint, portalDestination) {
+function createGridPoints(board, bodyPoints, fruitPoint, portalDestination) {
     const gridPoints = []
     for (let i = 0; i < board.length; i++) {
         gridPoints.push([]);
@@ -21,4 +21,4 @@ function renderGridPoints(board, bodyPoints, fruitPoint, portalDestination) {
     return gridPoints;
 }
 
-export default renderGridPoints;
+export default createGridPoints;
