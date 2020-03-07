@@ -8,6 +8,7 @@ function createGridPoints(board, bodyPoints, fruitPoint, portalDestination) {
         for (let j = 0; j < board[i].length; j++) {
             gridPoints.push(
                 (<GridPoint 
+                    key={[i,  j]}
                     row={board[i][j].row + 1}
                     column={board[i][j].column + 1}
                     body={board[i][j].isBody}
