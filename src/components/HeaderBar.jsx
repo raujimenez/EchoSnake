@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function HeaderBar() {
     const classes = useStyles();
-
+    const githubLink = 'https://github.com/raujimenez/echosnake';
     return (
         <div className={classes.root}>
             <AppBar position="static" color="transparent">
@@ -46,7 +46,7 @@ export default function HeaderBar() {
                     <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="themeSwitch">
                         <Brightness4Icon />
                     </IconButton>
-                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="menu">
+                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="menu" href={githubLink}>
                         <GitHubIcon />
                     </IconButton>
                 </Toolbar>
