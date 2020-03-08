@@ -10,17 +10,19 @@ function App() {
   const timeHook = useState(0.30);
   const heightHook = useState(20);
   const widthHook = useState(25);
-
+  const drawerHook = useState(false);
+  
   const values = {
     timeHook,
     heightHook, 
-    widthHook
+    widthHook,
+    drawerHook
   }
 
   return (
     <div className="App">
-      <HeaderBar />
       <GameInfoContext.Provider value={values}>
+          <HeaderBar />
           <GameOptions />
           <GameBoard />
       </GameInfoContext.Provider>

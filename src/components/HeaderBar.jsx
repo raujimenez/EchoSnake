@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import GameInfoContext from '../context/GameInfoContext.jsx';
+
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -27,19 +29,22 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function HeaderBar() {
+export default function HeaderBar(props) {
     const classes = useStyles();
     const githubLink = 'https://github.com/raujimenez/echosnake';
+
+    const drawerHook = useContext(GameInfoContext).drawerHook;
+
     return (
         <div className={classes.root}>
             <AppBar position="static" color="transparent">
                 <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={ () =>drawerHook[1](true)}>
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         EchoSnake
-          </Typography>
+                     </Typography>
                     <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="Twitter">
                         <TwitterIcon />
                     </IconButton>

@@ -1,6 +1,10 @@
 import React, { useState, useContext } from 'react';
 import GameInfoContext from '../context/GameInfoContext.jsx';
 
+import {Drawer, IconButton, Typography, Divider, Slider, Button } from '@material-ui/core'; 
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+
 import './styles/GameOptions.css';
 
 function GameOptions(props) {
@@ -9,10 +13,11 @@ function GameOptions(props) {
     const [width, setWidth] = useState(25);
 
     // game settings should update gameboard so we need context
-    const {timeHook, heightHook, widthHook} = useContext(GameInfoContext);
+    const {timeHook, heightHook, widthHook, drawerHook} = useContext(GameInfoContext);
     const setTimeHook = timeHook[1];
     const setHeightHook = heightHook[1];
     const setWidthHook = widthHook[1];
+    const setDrawerHook = drawerHook[1];
 
     function setBoundaries(min, max, setter) {
         return function changeVal(val) {
@@ -34,34 +39,95 @@ function GameOptions(props) {
         setTimeHook(time);
         setHeightHook(height);
         setWidthHook(width);
+        setDrawerHook(false);
     }
 
-    return (
-        <div className='GameOptions'>
-            <span className='gameSetting' id='timeSetting'>
-                Time (sec):
-                <button id='timeDecrease' onClick={() => changeTime(time - 0.05)}>-</button>
-                <div className='Display'>{time.toFixed(2)}</div>
-                <button id='timeIncrease' onClick={() => changeTime(time + 0.05)}>+</button>
+    function closeHandler(event, reason) {
+        return function(event) {
+            if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+                return;
+            }
+        }
+    }
 
-            </span>
-            <span className='gameSetting' id='heightSetting'>
-                Height:
-                <button id='heightDecrease' onClick={() => changeHeight(height - 1)}>-</button>
-                <div className='Display'>{height}</div>
-                <button id='heightIncrease' onClick={() => changeHeight(height + 1)}>+</button>
-            </span>
-            <span className='gameSetting' id='widthSetting'>
-                Width:
-                <button id='widthDecrease' onClick={() => changeWidth(width - 1)}>-</button>
-                <div className='Display'>{width}</div>
-                <button id='widthIncrease' onClick={() => changeWidth(width + 1)}>+</button>
-            </span>
-            <span className='gameSetting' id='gamerSetters'>
-                <button id='resetGameButton' onClick={resetSettings}>Reset Values</button>
-                <button id='newGameButton' onClick={updateGameSettingContext}>New game</button>
-            </span>
-        </div>
+    const drawerWidth = 1000;
+
+    const classes = makeStyles(theme => ({
+        drawerHeader: {
+            display: 'flex',
+            alignItems: 'center',
+            padding: theme.spacing(0, 1),
+            ...theme.mixins.toolbar,
+            justifyContent: 'flex-end',
+        }, 
+        title: {
+            flexGrow: 1,
+            padding: theme.spacing(0, 1, 1,1,1)
+        },
+        buttonBottom: {
+            marginLeft: '10px'
+        } 
+        }),
+    );
+        
+    return (
+        <Drawer open={drawerHook[0]} onClose={closeHandler} onKeyDown={(event) => setDrawerHook(false)}>
+            <div>
+                <IconButton onClick={() => setDrawerHook(false)}>
+                    <ChevronLeftIcon />
+                </IconButton>
+            </div>
+            <Divider />
+            <br/>
+            <div className='GameOptions'>
+                <Typography className={classes.title}>
+                    Time (sec)
+                </Typography>
+                <Slider
+                    defaultValue={0.30}
+                    onChange={(e, val) => changeTime(val)}
+                    aria-labelledby="discrete-slider"
+                    valueLabelDisplay="auto"
+                    step={0.05}
+                    min={0.05}
+                    max={1}
+                ></Slider>                    
+
+                <Typography className={classes.title}>
+                    Height
+                </Typography>
+                <Slider
+                    defaultValue={20}
+                    onChange={(e, val) => changeHeight(val)}
+                    aria-labelledby="discrete-slider"
+                    valueLabelDisplay="auto"
+                    step={1}
+                    min={10}
+                    max={20}
+                ></Slider>
+
+                <Typography className={classes.title}>
+                    Width
+                </Typography>
+                <Slider
+                    defaultValue={25}
+                    onChange={(e, val) => changeWidth(val)}
+                    aria-labelledby="discrete-slider"
+                    valueLabelDisplay="auto"
+                    step={1}
+                    min={10}
+                    max={35}
+                ></Slider>
+
+                <br />
+                <span>
+                <Button variant='contained' color='secondary' onClick={resetSettings} styles={{margin: '10px'}}>Reset Values</Button>
+                <Button id='updateButton' styles={{marginLeft: '10px'}}  variant='contained' color='primary' onClick={updateGameSettingContext}>Update Game</Button>
+                </span>
+
+                <br />
+            </div> 
+        </Drawer>
     )
 }
 
