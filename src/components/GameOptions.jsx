@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import GameInfoContext from '../context/GameInfoContext.jsx';
 
-import {Drawer, IconButton, Typography, Divider, Slider, Button, Icon } from '@material-ui/core'; 
+import {Drawer, IconButton, Typography, Divider, Slider, Button } from '@material-ui/core'; 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import BugReportIcon from '@material-ui/icons/BugReport';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import './styles/GameOptions.css';
 
