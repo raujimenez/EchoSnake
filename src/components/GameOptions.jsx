@@ -25,9 +25,9 @@ function GameOptions(props) {
         }
     }
 
-    const changeTime = setBoundaries(0.05, 1, setTime);
-    const changeHeight = setBoundaries(10, 20, setHeight);
-    const changeWidth = setBoundaries(10, 35, setWidth);
+    const changeTime = setBoundaries(0.05, 0.55, setTime);
+    const changeHeight = setBoundaries(10, 30, setHeight);
+    const changeWidth = setBoundaries(10, 40, setWidth);
 
     function resetSettings() {
         setTime(0.30);
@@ -50,7 +50,6 @@ function GameOptions(props) {
         }
     }
 
-    const drawerWidth = 1000;
 
     const classes = makeStyles(theme => ({
         drawerHeader: {
@@ -84,45 +83,60 @@ function GameOptions(props) {
                     Time (sec)
                 </Typography>
                 <Slider
-                    defaultValue={0.30}
+                    value={time}
                     onChange={(e, val) => changeTime(val)}
                     aria-labelledby="discrete-slider"
                     valueLabelDisplay="auto"
                     step={0.05}
                     min={0.05}
-                    max={1}
+                    max={0.55}
                 ></Slider>                    
 
                 <Typography className={classes.title}>
                     Height
                 </Typography>
                 <Slider
-                    defaultValue={20}
+                    value={height}
                     onChange={(e, val) => changeHeight(val)}
                     aria-labelledby="discrete-slider"
                     valueLabelDisplay="auto"
                     step={1}
                     min={10}
-                    max={20}
+                    max={30}
                 ></Slider>
 
                 <Typography className={classes.title}>
                     Width
                 </Typography>
                 <Slider
-                    defaultValue={25}
+                    value={width}
                     onChange={(e, val) => changeWidth(val)}
                     aria-labelledby="discrete-slider"
                     valueLabelDisplay="auto"
                     step={1}
                     min={10}
-                    max={35}
+                    max={40}
                 ></Slider>
 
                 <br />
                 <span>
-                <Button variant='contained' color='secondary' onClick={resetSettings} styles={{margin: '10px'}}>Reset Values</Button>
-                <Button id='updateButton' styles={{marginLeft: '10px'}}  variant='contained' color='primary' onClick={updateGameSettingContext}>Update Game</Button>
+                <Button 
+                    variant='contained' 
+                    color='secondary' 
+                    onClick={resetSettings} 
+                    styles={{margin: '10px'}}
+                >
+                Reset Values
+                </Button>
+                <Button 
+                    id='updateButton' 
+                    styles={{marginLeft: '10px'}}  
+                    variant='contained' 
+                    color='primary' 
+                    onClick={updateGameSettingContext}
+                >
+                Update Game
+                </Button>
                 </span>
 
                 <br />
