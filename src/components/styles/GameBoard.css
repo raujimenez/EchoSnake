@@ -1,6 +1,6 @@
 .GameBoard {
-    max-width: 33vw;
-    max-height: 50vh;
-    padding-left: 33vw;
-    display: grid;
+  max-width: 33vw;
+  max-height: 50vh;
+  padding-left: 33vw;
+  display: grid;
 }
