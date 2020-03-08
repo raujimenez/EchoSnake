@@ -1,5 +1,5 @@
 .App {
-  display: grid;
-  grid-template-columns: 25% auto auto;
-  grid-template-rows: auto auto;
+  height: 100vh;
+  grid-template-columns: 25% auto;
+  grid-template-rows: auto;
 }

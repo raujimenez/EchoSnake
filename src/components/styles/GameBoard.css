@@ -1,6 +1,6 @@
 .GameBoard {
-    grid-row: 2;
-    grid-column: 2;
+    max-width: 33vw;
+    max-height: 50vh;
+    padding-left: 33vw;
     display: grid;
-    justify-self: center;
 }
