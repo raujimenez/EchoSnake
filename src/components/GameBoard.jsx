@@ -15,7 +15,7 @@ import './styles/GameBoard.css';
 function GameBoard(props) {
     const [SPACE, LEFT, UP, RIGHT, DOWN] = [32, 37, 38, 39, 40];
     
-    const {timeHook, heightHook, widthHook, drawerHook} = useContext(GameInfoContext); 
+    const {timeHook, heightHook, widthHook} = useContext(GameInfoContext); 
     
     // start in the middle
     // change board to use state so that on rerender it updates new game settings.
