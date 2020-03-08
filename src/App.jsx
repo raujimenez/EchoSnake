@@ -11,7 +11,7 @@ function App() {
   const heightHook = useState(20);
   const widthHook = useState(25);
   const drawerHook = useState(false);
-  const themeHook = useState("light");
+  const themeHook = useState("dark");
 
   const values = {
     timeHook,

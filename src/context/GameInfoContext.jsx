@@ -5,7 +5,7 @@ const GameInfoContext = React.createContext({
   heightHook: [10, () => {}],
   widthHook: [10, () => {}],
   drawerHook: [false, () => {}],
-  themeHook: ["light", () => {}]
+  themeHook: ["dark", () => {}]
 });
 
 export default GameInfoContext;

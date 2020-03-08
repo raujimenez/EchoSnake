@@ -89,8 +89,11 @@ function GameOptions(props) {
       marginLeft: "10px"
     },
     drawerPaper: {
-      backgroundColor: bgColor,
+      background: bgColor,
       color: textColor
+    },
+    dividerColor: {
+      backgroundColor: textColor
     }
   }));
 
@@ -98,7 +101,7 @@ function GameOptions(props) {
 
   return (
     <Drawer
-      classes={{ paper: classes.drawerPaper }}
+      classes={{paper: classes.drawerPaper}}
       open={drawerHook[0]}
       onClose={closeHandler}
       onKeyDown={event => setDrawerHook(false)}
@@ -108,7 +111,7 @@ function GameOptions(props) {
           <ChevronLeftIcon style={{ fill: svgFill }} />
         </IconButton>
       </div>
-      <Divider />
+      <Divider classes={{root: classes.dividerColor }}/>
       <br />
       <div className="GameOptions">
         <Typography
@@ -189,7 +192,7 @@ function GameOptions(props) {
         <br />
         <br />
 
-        <Divider />
+        <Divider classes={{root: classes.dividerColor }}/>
         <br />
         <div style={{ textAlign: "center" }}>
           <Button>
@@ -205,7 +208,7 @@ function GameOptions(props) {
         </div>
         <br />
 
-        <Divider />
+        <Divider classes={{root: classes.dividerColor }}/>
         <br />
         <div style={{ textAlign: "center" }}>
           <Typography
@@ -231,7 +234,7 @@ function GameOptions(props) {
           <br />
           <br />
 
-          <Divider />
+          <Divider classes={{root: classes.dividerColor }}/>
           <br />
           <Typography
             style={{ color: textColor }}
