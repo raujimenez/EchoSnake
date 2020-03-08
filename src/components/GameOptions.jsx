@@ -9,6 +9,7 @@ import {
   Slider,
   Button
 } from "@material-ui/core";
+
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import BugReportIcon from "@material-ui/icons/BugReport";
 import TwitterIcon from "@material-ui/icons/Twitter";
