@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import GameInfoContext from '../context/GameInfoContext.jsx';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ShareIcon from '@material-ui/icons/Share';
@@ -33,7 +34,20 @@ export default function HeaderBar(props) {
     const classes = useStyles();
     const githubLink = 'https://github.com/raujimenez/echosnake';
 
-    const drawerHook = useContext(GameInfoContext).drawerHook;
+    const { drawerHook, themeHook }  = useContext(GameInfoContext);
+    const [theme, setTheme] = useState(themeHook[0])
+    
+
+    function handleThemeSwitch() {
+        if (theme === 'light') {
+            themeHook[1]('dark');
+            setTheme('dark');
+        }
+        else if (theme === 'dark') {
+            themeHook[1]('light');
+            setTheme('light');
+        }
+    }
 
     return (
         <div className={classes.root}>
@@ -48,8 +62,8 @@ export default function HeaderBar(props) {
                     <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="share">
                         <ShareIcon />
                     </IconButton>
-                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="ThemeSwitch">
-                        <Brightness4Icon />
+                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="ThemeSwitch" onClick={handleThemeSwitch}>
+                        {themeHook[0] === 'light' ? <Brightness4Icon /> : <Brightness3Icon />}
                     </IconButton>
                     <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="GitHub" href={githubLink}>
                         <GitHubIcon />
