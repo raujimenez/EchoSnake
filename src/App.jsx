@@ -21,8 +21,10 @@ function App() {
     themeHook
   }
 
+  const bgColor = (themeHook[0] === 'light') ? 'white' : '#1c1c1c';
+
   return (
-    <div className="App">
+    <div className="App" style={{background: bgColor}}>
       <GameInfoContext.Provider value={values}>
           <HeaderBar />
           <GameOptions />

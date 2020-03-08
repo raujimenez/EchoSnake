@@ -13,12 +13,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import './styles/GameOptions.css';
 
 function GameOptions(props) {
-    const [time, setTime] = useState(0.30);
-    const [height, setHeight] = useState(20);
-    const [width, setWidth] = useState(25);
-
     // game settings should update gameboard so we need context
-    const {timeHook, heightHook, widthHook, drawerHook} = useContext(GameInfoContext);
+    const {timeHook, heightHook, widthHook, drawerHook, themeHook} = useContext(GameInfoContext);
     const setTimeHook = timeHook[1];
     const setHeightHook = heightHook[1];
     const setWidthHook = widthHook[1];
@@ -29,6 +25,11 @@ function GameOptions(props) {
             setter(val < min ? min : val > max ? max : val);
         }
     }
+
+    const [time, setTime] = useState(0.30);
+    const [height, setHeight] = useState(20);
+    const [width, setWidth] = useState(25);
+    const [theme, setTheme] = useState(themeHook[0]);
 
     const changeTime = setBoundaries(0.05, 0.55, setTime);
     const changeHeight = setBoundaries(10, 30, setHeight);
@@ -55,14 +56,18 @@ function GameOptions(props) {
         }
     }
 
+    const svgFill = (theme === 'light') ? 'black' : 'whitesmoke'; 
+    const textColor = (theme === 'light') ? 'black' : 'whitesmoke';
+    const bgColor = (theme === 'light') ? 'white' : '#2b2b2b'; 
 
-    const classes = makeStyles(theme => ({
+    const useStyles = makeStyles(theme => ({
         drawerHeader: {
             display: 'flex',
             alignItems: 'center',
             padding: theme.spacing(0, 1),
             ...theme.mixins.toolbar,
             justifyContent: 'flex-end',
+
         }, 
         title: {
             flexGrow: 1,
@@ -70,21 +75,27 @@ function GameOptions(props) {
         },
         buttonBottom: {
             marginLeft: '10px'
+        },
+        drawerPaper: {
+            backgroundColor: bgColor,
+            color: textColor      
         } 
         }),
     );
-        
+    
+    const classes = useStyles();
+
     return (
-        <Drawer open={drawerHook[0]} onClose={closeHandler} onKeyDown={(event) => setDrawerHook(false)}>
+        <Drawer classes={{paper: classes.drawerPaper}} open={drawerHook[0]} onClose={closeHandler} onKeyDown={(event) => setDrawerHook(false)}>
             <div>
                 <IconButton onClick={() => setDrawerHook(false)}>
-                    <ChevronLeftIcon />
+                    <ChevronLeftIcon style={{fill: svgFill}}/>
                 </IconButton>
             </div>
             <Divider />
             <br/>
             <div className='GameOptions'>
-                <Typography variant="h7" className={classes.title}>
+                <Typography style={{color: textColor}} variant="h7" className={classes.title}>
                     Time (sec)
                 </Typography>
                 <Slider
@@ -97,7 +108,7 @@ function GameOptions(props) {
                     max={0.55}
                 ></Slider>                    
 
-                <Typography variant="h7" className={classes.title}>
+                <Typography style={{color: textColor}} variant="h7" className={classes.title}>
                     Height
                 </Typography>
                 <Slider
@@ -110,7 +121,7 @@ function GameOptions(props) {
                     max={30}
                 ></Slider>
 
-                <Typography variant="h7" className={classes.title}>
+                <Typography style={{color: textColor}} variant="h7" className={classes.title}>
                     Width
                 </Typography>
                 <Slider
@@ -154,8 +165,8 @@ function GameOptions(props) {
                 <br />
                 <div style={{textAlign: 'center'}} >
                     <Button>
-                        <BugReportIcon style={{marginRight: '5px'}} />
-                        <Typography variant="h7" className={classes.title}>
+                        <BugReportIcon style={{marginRight: '5px', fill: svgFill}} />
+                        <Typography style={{color: textColor}} variant="h7" className={classes.title}>
                             Report a bug
                         </Typography>
                     </Button>
@@ -165,22 +176,22 @@ function GameOptions(props) {
                 <Divider />
                 <br />
                 <div style={{textAlign: 'center'}}>
-                    <Typography variant="h7" className={classes.title}>
+                    <Typography style={{color: textColor}} variant="h7" className={classes.title}>
                         Get in Touch
                     </Typography>
                     <br />
                     <br />
                     <span>
-                        <Button href="https://github.com/raujimenez" target="_blank"><GitHubIcon/></Button>
-                        <Button href="https://twitter.com/raulrusty" target="_blank"><TwitterIcon/></Button>
-                        <Button href="https://www.instagram.com/raulrusty" target="_blank"><InstagramIcon/></Button>
+                        <Button href="https://github.com/raujimenez" target="_blank"><GitHubIcon style={{fill: svgFill}}/></Button>
+                        <Button href="https://twitter.com/raulrusty" target="_blank"><TwitterIcon style={{fill: svgFill}}/></Button>
+                        <Button href="https://www.instagram.com/raulrusty" target="_blank"><InstagramIcon style={{fill: svgFill}}/></Button>
                     </span>
                     <br />
                     <br />
 
                     <Divider />
                     <br />
-                    <Typography variant="h7" className={classes.title}>
+                    <Typography style={{color: textColor}} variant="h7" className={classes.title}>
                         Raul Jimenez ©
                     </Typography>
                 </div>
