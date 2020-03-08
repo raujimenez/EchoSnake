@@ -1,8 +1,13 @@
 import React, { useState, useContext } from 'react';
 import GameInfoContext from '../context/GameInfoContext.jsx';
 
-import {Drawer, IconButton, Typography, Divider, Slider, Button } from '@material-ui/core'; 
+import {Drawer, IconButton, Typography, Divider, Slider, Button, Icon } from '@material-ui/core'; 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import BugReportIcon from '@material-ui/icons/BugReport';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import GitHubIcon from '@material-ui/icons/GitHub';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import './styles/GameOptions.css';
@@ -79,7 +84,7 @@ function GameOptions(props) {
             <Divider />
             <br/>
             <div className='GameOptions'>
-                <Typography className={classes.title}>
+                <Typography variant="h7" className={classes.title}>
                     Time (sec)
                 </Typography>
                 <Slider
@@ -92,7 +97,7 @@ function GameOptions(props) {
                     max={0.55}
                 ></Slider>                    
 
-                <Typography className={classes.title}>
+                <Typography variant="h7" className={classes.title}>
                     Height
                 </Typography>
                 <Slider
@@ -105,7 +110,7 @@ function GameOptions(props) {
                     max={30}
                 ></Slider>
 
-                <Typography className={classes.title}>
+                <Typography variant="h7" className={classes.title}>
                     Width
                 </Typography>
                 <Slider
@@ -139,7 +144,48 @@ function GameOptions(props) {
                 </Button>
                 </span>
 
+                {
+                    // terrible line breaks but i just needed something quick
+                }
                 <br />
+                <br />
+
+                <Divider />
+                <br />
+                <div style={{textAlign: 'center'}} >
+                    <Button>
+                        <BugReportIcon style={{marginRight: '5px'}} />
+                        <Typography variant="h7" className={classes.title}>
+                            Report a bug
+                        </Typography>
+                    </Button>
+                </div>
+                <br />
+
+                <Divider />
+                <br />
+                <div style={{textAlign: 'center'}}>
+                    <Typography variant="h7" className={classes.title}>
+                        Get in Touch
+                    </Typography>
+                    <br />
+                    <br />
+                    <span>
+                        <Button href="https://github.com/raujimenez"><GitHubIcon/></Button>
+                        <Button href="https://twitter.com/raulrusty"><TwitterIcon/></Button>
+                        <Button href="https://www.instagram.com/raulrusty"><InstagramIcon/></Button>
+                    </span>
+                    <br />
+                    <br />
+                    <Divider />
+                    <br />
+                    <br />                    
+                    <Typography variant="h7" className={classes.title}>
+                        Raul Jimenez ©
+                    </Typography>
+                </div>
+                <br />
+
             </div> 
         </Drawer>
     )
