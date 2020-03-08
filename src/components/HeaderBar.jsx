@@ -49,24 +49,28 @@ export default function HeaderBar(props) {
         }
     }
 
+    const svgFill = (theme === 'light') ? 'black' : 'whitesmoke'; 
+    const textColor = (theme === 'light') ? 'black' : 'whitesmoke';
+    const bgColor = (theme === 'light') ? 'white' : '#2b2b2b'; 
+
     return (
         <div className={classes.root}>
-            <AppBar position="static" color="transparent">
+            <AppBar position="static" color="transparent" style={{backgroundColor: bgColor}}>
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={ () =>drawerHook[1](true)}>
-                        <MenuIcon />
+                        <MenuIcon style={{fill: svgFill}}/>
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}>
+                    <Typography variant="h6" className={classes.title} style={{color: textColor}}>
                         EchoSnake
                      </Typography>
                     <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="share">
-                        <ShareIcon />
+                        <ShareIcon style={{fill: svgFill}}/>
                     </IconButton>
                     <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="ThemeSwitch" onClick={handleThemeSwitch}>
-                        {themeHook[0] === 'light' ? <Brightness4Icon /> : <Brightness3Icon />}
+                        {themeHook[0] === 'light' ? <Brightness4Icon /> : <Brightness3Icon style={{fill: svgFill}}/>}
                     </IconButton>
                     <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="GitHub" href={githubLink} target="_blank">
-                        <GitHubIcon />
+                        <GitHubIcon style={{fill: svgFill}}/>
                     </IconButton>
                 </Toolbar>
             </AppBar>

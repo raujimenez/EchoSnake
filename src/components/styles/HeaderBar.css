@@ -1,5 +1,5 @@
 .headerBar {
-    background: lightgrey;
+    background: rgb(250, 235, 235);
     grid-row: 1;
     grid-column: span 3;
     display: grid;
