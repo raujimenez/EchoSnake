@@ -11,12 +11,14 @@ function App() {
   const heightHook = useState(20);
   const widthHook = useState(25);
   const drawerHook = useState(false);
-  
+  const themeHook = useState('light');
+
   const values = {
     timeHook,
     heightHook, 
     widthHook,
-    drawerHook
+    drawerHook,
+    themeHook
   }
 
   return (
