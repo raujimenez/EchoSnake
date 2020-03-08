@@ -65,7 +65,7 @@ export default function HeaderBar(props) {
                     <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="ThemeSwitch" onClick={handleThemeSwitch}>
                         {themeHook[0] === 'light' ? <Brightness4Icon /> : <Brightness3Icon />}
                     </IconButton>
-                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="GitHub" href={githubLink}>
+                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="GitHub" href={githubLink} target="_blank">
                         <GitHubIcon />
                     </IconButton>
                 </Toolbar>

@@ -171,9 +171,9 @@ function GameOptions(props) {
                     <br />
                     <br />
                     <span>
-                        <Button href="https://github.com/raujimenez"><GitHubIcon/></Button>
-                        <Button href="https://twitter.com/raulrusty"><TwitterIcon/></Button>
-                        <Button href="https://www.instagram.com/raulrusty"><InstagramIcon/></Button>
+                        <Button href="https://github.com/raujimenez" target="_blank"><GitHubIcon/></Button>
+                        <Button href="https://twitter.com/raulrusty" target="_blank"><TwitterIcon/></Button>
+                        <Button href="https://www.instagram.com/raulrusty" target="_blank"><InstagramIcon/></Button>
                     </span>
                     <br />
                     <br />
