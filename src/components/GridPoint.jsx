@@ -11,9 +11,9 @@ function GridPoint(props) {
         gridRow: row,
         gridColumn: col,
         padding: '10px',
-        backgroundColor: containsBody ? 'green' : 
+        backgroundColor: portalDestination ? 'orange': 
                          containsFruit ? 'red' : 
-                         portalDestination ? 'orange':
+                         containsBody ? 'green' :
                          'whitesmoke',
         borderStyle: 'none',
         borderWidth: '0.1px'
