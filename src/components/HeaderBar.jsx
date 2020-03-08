@@ -10,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import ShareIcon from '@material-ui/icons/Share';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -45,8 +45,8 @@ export default function HeaderBar(props) {
                     <Typography variant="h6" className={classes.title}>
                         EchoSnake
                      </Typography>
-                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="Twitter">
-                        <TwitterIcon />
+                    <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="share">
+                        <ShareIcon />
                     </IconButton>
                     <IconButton edge="end" className={classes.rightButton} color="inherit" aria-label="ThemeSwitch">
                         <Brightness4Icon />
