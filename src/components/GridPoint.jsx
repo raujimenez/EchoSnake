@@ -15,7 +15,7 @@ function GridPoint(props) {
                          containsFruit ? 'red' : 
                          portalDestination ? 'orange':
                          'whitesmoke',
-        borderStyle: 'solid',
+        borderStyle: 'none',
         borderWidth: '0.1px'
 
     }

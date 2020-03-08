@@ -177,9 +177,9 @@ function GameOptions(props) {
                     </span>
                     <br />
                     <br />
+
                     <Divider />
                     <br />
-                    <br />                    
                     <Typography variant="h7" className={classes.title}>
                         Raul Jimenez ©
                     </Typography>
