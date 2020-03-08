@@ -17,16 +17,13 @@ function GameBoard(props) {
     
     const {timeHook, heightHook, widthHook} = useContext(GameInfoContext); 
     
-    // start in the middle
-    // change board to use state so that on rerender it updates new game settings.
-    // going to need to modify helper/
     const [board, setBoard] = useState(boardGenerator(heightHook[0], widthHook[0]));
     const midpointX = Math.floor(widthHook[0] / 2);
     const midpointY = Math.floor(heightHook[0] / 2);
 
     const [bodyPoints, setBodyPoints] = useState([[midpointX, midpointY]]);
     const [currentDirection, setCurrentDirection] = useState(UP);
-    const [fruitPoint, setFruitPoint] = useState([0, 0]);
+    const [fruitPoint, setFruitPoint] = useState(generateFruit(widthHook[0], heightHook[0], bodyPoints));
     const [portalDestination, setPortalDestination] = useState([null, null]);
 
     let boardGridPoints = []
