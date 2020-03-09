@@ -19,6 +19,7 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import { makeStyles } from "@material-ui/core/styles";
 
 import "./styles/GameOptions.css";
+import BugReport from "./BugReport.jsx";
 
 function GameOptions(props) {
   // game settings should update gameboard so we need context
@@ -40,6 +41,7 @@ function GameOptions(props) {
   const [height, setHeight] = useState(20);
   const [width, setWidth] = useState(25);
   const [theme, setTheme] = useState(themeHook[0]);
+  const [bugReport, setBugReport] = useState(false);
 
   const changeTime = setBoundaries(0.05, 0.55, setTime);
   const changeHeight = setBoundaries(10, 30, setHeight);
@@ -70,6 +72,7 @@ function GameOptions(props) {
   }
 
   function handleBugReportClick() {
+    setBugReport(true);
     return;
   }
 
@@ -104,153 +107,159 @@ function GameOptions(props) {
   const classes = useStyles();
 
   return (
-    <Drawer
-      classes={{ paper: classes.drawerPaper }}
-      open={drawerHook[0]}
-      onClose={closeHandler}
-      onKeyDown={event => setDrawerHook(false)}
-    >
-      <div>
-        <IconButton onClick={() => setDrawerHook(false)}>
-          <ChevronLeftIcon style={{ fill: svgFill }} />
-        </IconButton>
-      </div>
-      <Divider classes={{ root: classes.dividerColor }} />
-      <br />
-      <div className="GameOptions">
-        <Typography
-          style={{ color: textColor }}
-          variant="h7"
-          className={classes.title}
-        >
-          Time (sec)
-        </Typography>
-        <Slider
-          value={time}
-          onChange={(e, val) => changeTime(val)}
-          aria-labelledby="discrete-slider"
-          valueLabelDisplay="auto"
-          step={0.05}
-          min={0.05}
-          max={0.55}
-        ></Slider>
-
-        <Typography
-          style={{ color: textColor }}
-          variant="h7"
-          className={classes.title}
-        >
-          Height
-        </Typography>
-        <Slider
-          value={height}
-          onChange={(e, val) => changeHeight(val)}
-          aria-labelledby="discrete-slider"
-          valueLabelDisplay="auto"
-          step={1}
-          min={10}
-          max={30}
-        ></Slider>
-
-        <Typography
-          style={{ color: textColor }}
-          variant="h7"
-          className={classes.title}
-        >
-          Width
-        </Typography>
-        <Slider
-          value={width}
-          onChange={(e, val) => changeWidth(val)}
-          aria-labelledby="discrete-slider"
-          valueLabelDisplay="auto"
-          step={1}
-          min={10}
-          max={40}
-        ></Slider>
-
-        <br />
-        <span>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={resetSettings}
-            styles={{ margin: "10px" }}
-          >
-            Reset Values
-          </Button>
-          <Button
-            id="updateButton"
-            styles={{ marginLeft: "10px" }}
-            variant="contained"
-            color="primary"
-            onClick={updateGameSettingContext}
-          >
-            Update Game
-          </Button>
-        </span>
-
-        {
-          // terrible line breaks but i just needed something quick
-        }
-        <br />
-        <br />
-
-        <Divider classes={{ root: classes.dividerColor }} />
-        <br />
-        <div style={{ textAlign: "center" }}>
-          <Button onClick={handleBugReportClick}>
-            <BugReportIcon style={{ marginRight: "5px", fill: svgFill }} />
-            <Typography
-              style={{ color: textColor }}
-              variant="h7"
-              className={classes.title}
-            >
-              Report a bug
-            </Typography>
-          </Button>
+    <div>
+      <Drawer
+        classes={{ paper: classes.drawerPaper }}
+        open={drawerHook[0]}
+        onClose={closeHandler}
+        onKeyDown={event => setDrawerHook(false)}
+      >
+        <div>
+          <IconButton onClick={() => setDrawerHook(false)}>
+            <ChevronLeftIcon style={{ fill: svgFill }} />
+          </IconButton>
         </div>
-        <br />
-
         <Divider classes={{ root: classes.dividerColor }} />
         <br />
-        <div style={{ textAlign: "center" }}>
+        <div className="GameOptions">
           <Typography
             style={{ color: textColor }}
             variant="h7"
             className={classes.title}
           >
-            Get in Touch
+            Time (sec)
           </Typography>
-          <br />
+          <Slider
+            value={time}
+            onChange={(e, val) => changeTime(val)}
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="auto"
+            step={0.05}
+            min={0.05}
+            max={0.55}
+          ></Slider>
+
+          <Typography
+            style={{ color: textColor }}
+            variant="h7"
+            className={classes.title}
+          >
+            Height
+          </Typography>
+          <Slider
+            value={height}
+            onChange={(e, val) => changeHeight(val)}
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="auto"
+            step={1}
+            min={10}
+            max={30}
+          ></Slider>
+
+          <Typography
+            style={{ color: textColor }}
+            variant="h7"
+            className={classes.title}
+          >
+            Width
+          </Typography>
+          <Slider
+            value={width}
+            onChange={(e, val) => changeWidth(val)}
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="auto"
+            step={1}
+            min={10}
+            max={40}
+          ></Slider>
+
           <br />
           <span>
-            <Button href="https://github.com/raujimenez" target="_blank">
-              <GitHubIcon style={{ fill: svgFill }} />
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={resetSettings}
+              styles={{ margin: "10px" }}
+            >
+              Reset Values
             </Button>
-            <Button href="https://twitter.com/raulrusty" target="_blank">
-              <TwitterIcon style={{ fill: svgFill }} />
-            </Button>
-            <Button href="https://www.instagram.com/raulrusty" target="_blank">
-              <InstagramIcon style={{ fill: svgFill }} />
+            <Button
+              id="updateButton"
+              styles={{ marginLeft: "10px" }}
+              variant="contained"
+              color="primary"
+              onClick={updateGameSettingContext}
+            >
+              Update Game
             </Button>
           </span>
+
+          {
+            // terrible line breaks but i just needed something quick
+          }
           <br />
           <br />
 
           <Divider classes={{ root: classes.dividerColor }} />
           <br />
-          <Typography
-            style={{ color: textColor }}
-            variant="h7"
-            className={classes.title}
-          >
-            Raul Jimenez ©
-          </Typography>
+          <div style={{ textAlign: "center" }}>
+            <Button onClick={handleBugReportClick}>
+              <BugReportIcon style={{ marginRight: "5px", fill: svgFill }} />
+              <Typography
+                style={{ color: textColor }}
+                variant="h7"
+                className={classes.title}
+              >
+                Report a bug
+              </Typography>
+            </Button>
+          </div>
+          <br />
+
+          <Divider classes={{ root: classes.dividerColor }} />
+          <br />
+          <div style={{ textAlign: "center" }}>
+            <Typography
+              style={{ color: textColor }}
+              variant="h7"
+              className={classes.title}
+            >
+              Get in Touch
+            </Typography>
+            <br />
+            <br />
+            <span>
+              <Button href="https://github.com/raujimenez" target="_blank">
+                <GitHubIcon style={{ fill: svgFill }} />
+              </Button>
+              <Button href="https://twitter.com/raulrusty" target="_blank">
+                <TwitterIcon style={{ fill: svgFill }} />
+              </Button>
+              <Button
+                href="https://www.instagram.com/raulrusty"
+                target="_blank"
+              >
+                <InstagramIcon style={{ fill: svgFill }} />
+              </Button>
+            </span>
+            <br />
+            <br />
+
+            <Divider classes={{ root: classes.dividerColor }} />
+            <br />
+            <Typography
+              style={{ color: textColor }}
+              variant="h7"
+              className={classes.title}
+            >
+              Raul Jimenez ©
+            </Typography>
+          </div>
+          <br />
         </div>
-        <br />
-      </div>
-    </Drawer>
+      </Drawer>
+      <BugReport open={bugReport} onClose={setBugReport} theme={themeHook[0]}/>
+    </div>
   );
 }
 
