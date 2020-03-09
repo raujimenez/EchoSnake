@@ -69,6 +69,10 @@ function GameOptions(props) {
     };
   }
 
+  function handleBugReportClick() {
+    return;
+  }
+
   const svgFill = theme === "light" ? "black" : "whitesmoke";
   const textColor = theme === "light" ? "black" : "whitesmoke";
   const bgColor = theme === "light" ? "white" : "#2b2b2b";
@@ -101,7 +105,7 @@ function GameOptions(props) {
 
   return (
     <Drawer
-      classes={{paper: classes.drawerPaper}}
+      classes={{ paper: classes.drawerPaper }}
       open={drawerHook[0]}
       onClose={closeHandler}
       onKeyDown={event => setDrawerHook(false)}
@@ -111,7 +115,7 @@ function GameOptions(props) {
           <ChevronLeftIcon style={{ fill: svgFill }} />
         </IconButton>
       </div>
-      <Divider classes={{root: classes.dividerColor }}/>
+      <Divider classes={{ root: classes.dividerColor }} />
       <br />
       <div className="GameOptions">
         <Typography
@@ -192,10 +196,10 @@ function GameOptions(props) {
         <br />
         <br />
 
-        <Divider classes={{root: classes.dividerColor }}/>
+        <Divider classes={{ root: classes.dividerColor }} />
         <br />
         <div style={{ textAlign: "center" }}>
-          <Button>
+          <Button onClick={handleBugReportClick}>
             <BugReportIcon style={{ marginRight: "5px", fill: svgFill }} />
             <Typography
               style={{ color: textColor }}
@@ -208,7 +212,7 @@ function GameOptions(props) {
         </div>
         <br />
 
-        <Divider classes={{root: classes.dividerColor }}/>
+        <Divider classes={{ root: classes.dividerColor }} />
         <br />
         <div style={{ textAlign: "center" }}>
           <Typography
@@ -234,7 +238,7 @@ function GameOptions(props) {
           <br />
           <br />
 
-          <Divider classes={{root: classes.dividerColor }}/>
+          <Divider classes={{ root: classes.dividerColor }} />
           <br />
           <Typography
             style={{ color: textColor }}

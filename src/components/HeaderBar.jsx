@@ -2,8 +2,14 @@ import React, { useContext, useState } from "react";
 import GameInfoContext from "../context/GameInfoContext.jsx";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { IconButton, Typography, Toolbar, AppBar, Snackbar } from "@material-ui/core";
-import MuiAlert from '@material-ui/lab/Alert';
+import {
+  IconButton,
+  Typography,
+  Toolbar,
+  AppBar,
+  Snackbar
+} from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import Brightness3Icon from "@material-ui/icons/Brightness3";
@@ -29,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Alert(props) {
-  return <MuiAlert elevation={12} variant="filled" {...props} />
+  return <MuiAlert elevation={12} variant="filled" {...props} />;
 }
 
 export default function HeaderBar(props) {
@@ -51,12 +57,12 @@ export default function HeaderBar(props) {
   }
 
   function handleShareClick() {
-    navigator.clipboard.writeText(window.location.href)
-    setOpen(true)
+    navigator.clipboard.writeText(window.location.href);
+    setOpen(true);
   }
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setOpen(false);
@@ -126,11 +132,10 @@ export default function HeaderBar(props) {
       </AppBar>
 
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="success">
-            URL copied to clipboard
-          </Alert>
+        <Alert onClose={handleClose} severity="success">
+          URL copied to clipboard
+        </Alert>
       </Snackbar>
-
     </div>
   );
 }
