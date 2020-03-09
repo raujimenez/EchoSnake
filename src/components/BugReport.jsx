@@ -47,6 +47,7 @@ export default function BugReport(props) {
         <Typography variant="h5">Describe the bug</Typography>
       </DialogTitle>
       <TextField
+        autoFocus={open}
         InputProps={{ className: classes.input }}
         multiline
         rowsMax="5"
