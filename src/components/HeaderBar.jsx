@@ -2,10 +2,8 @@ import React, { useContext, useState } from "react";
 import GameInfoContext from "../context/GameInfoContext.jsx";
 
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import { IconButton, Typography, Toolbar, AppBar, Snackbar } from "@material-ui/core";
+import MuiAlert from '@material-ui/lab/Alert';
 import MenuIcon from "@material-ui/icons/Menu";
 
 import Brightness3Icon from "@material-ui/icons/Brightness3";
@@ -30,12 +28,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={12} variant="filled" {...props} />
+}
+
 export default function HeaderBar(props) {
   const classes = useStyles();
   const githubLink = "https://github.com/raujimenez/echosnake";
 
   const { drawerHook, themeHook } = useContext(GameInfoContext);
   const [theme, setTheme] = useState(themeHook[0]);
+  const [open, setOpen] = useState(false);
 
   function handleThemeSwitch() {
     if (theme === "light") {
@@ -46,6 +49,18 @@ export default function HeaderBar(props) {
       setTheme("light");
     }
   }
+
+  function handleShareClick() {
+    navigator.clipboard.writeText(window.location.href)
+    setOpen(true)
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   const svgFill = theme === "light" ? "black" : "whitesmoke";
   const textColor = theme === "light" ? "black" : "whitesmoke";
@@ -80,6 +95,7 @@ export default function HeaderBar(props) {
             className={classes.rightButton}
             color="inherit"
             aria-label="share"
+            onClick={handleShareClick}
           >
             <ShareIcon style={{ fill: svgFill }} />
           </IconButton>
@@ -108,6 +124,13 @@ export default function HeaderBar(props) {
           </IconButton>
         </Toolbar>
       </AppBar>
+
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success">
+            URL copied to clipboard
+          </Alert>
+      </Snackbar>
+
     </div>
   );
 }
