@@ -4,14 +4,23 @@ import {
   Dialog,
   Button,
   Typography,
-  DialogTitle
+  DialogTitle,
+  Snackbar
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={12} variant="filled" {...props} />;
+}
+
 
 export default function BugReport(props) {
   const { open, onClose, theme } = props;
 
   const [text, setText] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = event => {
     setText(event.target.value);
@@ -21,6 +30,19 @@ export default function BugReport(props) {
   const bgColor = theme === "light" ? "white" : "#2b2b2b";
 
   const handleOnClose = () => onClose(false);
+
+  // send to bug report
+  const handleSubmit = () => {
+    onClose(false);
+    setSubmitted(true);
+  }
+
+  const handleAlertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSubmitted(false);
+  };
 
   const useStyles = makeStyles(theme => ({
     paper: {
@@ -35,6 +57,7 @@ export default function BugReport(props) {
   const classes = useStyles();
 
   return (
+    <div>
     <Dialog
       PaperProps={{ style: { backgroundColor: bgColor, color: textColor } }}
       style={{ textAlign: "center" }}
@@ -74,6 +97,7 @@ export default function BugReport(props) {
           <Typography variant="h6">Cancel</Typography>
         </Button>
         <Button
+          onClick={handleSubmit}
           variant="contained"
           color="primary"
           style={{
@@ -86,5 +110,11 @@ export default function BugReport(props) {
         </Button>
       </span>
     </Dialog>
+    <Snackbar open={submitted} autoHideDuration={3000} onClose={handleAlertClose}>
+      <Alert onClose={handleAlertClose} severity="success">
+        Bug Report Sent, Thanks
+      </Alert>
+    </Snackbar>
+    </div>
   );
 }
