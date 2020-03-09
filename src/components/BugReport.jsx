@@ -36,7 +36,7 @@ export default function BugReport(props) {
 
   return (
     <Dialog
-      PaperProps={{style: {backgroundColor: bgColor, color: textColor}}}
+      PaperProps={{ style: { backgroundColor: bgColor, color: textColor } }}
       style={{ textAlign: "center" }}
       onClose={handleOnClose}
       classes={classes.paper}
@@ -47,37 +47,42 @@ export default function BugReport(props) {
         <Typography variant="h5">Describe the bug</Typography>
       </DialogTitle>
       <TextField
-        InputProps={{className: classes.input}}
+        InputProps={{ className: classes.input }}
         multiline
         rowsMax="5"
-        style={{ width: "25vw", padding: 10, marginLeft: '1vw', marginRight: '1vw'}}
+        style={{
+          width: "25vw",
+          padding: 10,
+          marginLeft: "1vw",
+          marginRight: "1vw"
+        }}
         value={text}
         onChange={handleChange}
       />
       <span>
-      <Button
-        onClick={handleOnClose}
-        variant="contained"
-        color="secondary"
-        style={{
-          marginRight: "1vw",
-          marginTop: "1vh",
-          marginBottom: "1vh"
-        }}
-      >
-        <Typography variant="h6">Cancel</Typography>
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{
-          marginLeft: "1vw",
-          marginTop: "1vh",
-          marginBottom: "1vh"
-        }}
-      >
-        <Typography variant="h6">Submit</Typography>
-      </Button>
+        <Button
+          onClick={handleOnClose}
+          variant="contained"
+          color="secondary"
+          style={{
+            marginRight: "1vw",
+            marginTop: "1vh",
+            marginBottom: "1vh"
+          }}
+        >
+          <Typography variant="h6">Cancel</Typography>
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{
+            marginLeft: "1vw",
+            marginTop: "1vh",
+            marginBottom: "1vh"
+          }}
+        >
+          <Typography variant="h6">Submit</Typography>
+        </Button>
       </span>
     </Dialog>
   );
