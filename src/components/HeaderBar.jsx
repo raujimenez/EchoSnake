@@ -42,7 +42,7 @@ export default function HeaderBar(props) {
   const classes = useStyles();
   const githubLink = "https://github.com/raujimenez/echosnake";
 
-  const { drawerHook, themeHook } = useContext(GameInfoContext);
+  const { drawerHook, themeHook, timeHook } = useContext(GameInfoContext);
   const [theme, setTheme] = useState(themeHook[0]);
   const [open, setOpen] = useState(false);
 
@@ -68,6 +68,11 @@ export default function HeaderBar(props) {
     setOpen(false);
   };
 
+  const handleOpen = () => {
+    timeHook[1](timeHook[0] + 1000)
+    drawerHook[1](true)
+  }
+
   const svgFill = theme === "light" ? "black" : "whitesmoke";
   const textColor = theme === "light" ? "black" : "whitesmoke";
   const bgColor = theme === "light" ? "white" : "#2b2b2b";
@@ -85,7 +90,7 @@ export default function HeaderBar(props) {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
-            onClick={() => drawerHook[1](true)}
+            onClick={handleOpen}
           >
             <MenuIcon style={{ fill: svgFill }} />
           </IconButton>

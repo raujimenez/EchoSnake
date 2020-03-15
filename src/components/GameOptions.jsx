@@ -37,11 +37,11 @@ function GameOptions(props) {
     };
   }
 
-  const [time, setTime] = useState(0.3);
-  const [height, setHeight] = useState(20);
-  const [width, setWidth] = useState(25);
+  const [time, setTime] = useState(timeHook[0]);
+  const [height, setHeight] = useState(heightHook[0]);
+  const [width, setWidth] = useState(widthHook[0]);
   const [theme, setTheme] = useState(themeHook[0]);
-  const [bugReport, setBugReport] = useState(false);
+  const [bugReport, setBugReport] = useState(drawerHook[0]);
 
   const changeTime = setBoundaries(0.05, 0.55, setTime);
   const changeHeight = setBoundaries(10, 30, setHeight);
@@ -106,6 +106,11 @@ function GameOptions(props) {
 
   const classes = useStyles();
 
+  function chevronClick() {
+    setTimeHook(timeHook[0] - 1000)
+    setDrawerHook(false)
+  }
+
   return (
     <div>
       <Drawer
@@ -115,7 +120,7 @@ function GameOptions(props) {
         onKeyDown={event => setDrawerHook(false)}
       >
         <div>
-          <IconButton onClick={() => setDrawerHook(false)}>
+          <IconButton onClick={chevronClick}>
             <ChevronLeftIcon style={{ fill: svgFill }} />
           </IconButton>
         </div>
