@@ -35,6 +35,7 @@ export default function BugReport(props) {
   const handleSubmit = () => {
     onClose(false);
     setSubmitted(true);
+    setText('');
   }
 
   const handleAlertClose = (event, reason) => {
