@@ -40,7 +40,7 @@ function GameOptions(props) {
   const [time, setTime] = useState(timeHook[0]);
   const [height, setHeight] = useState(heightHook[0]);
   const [width, setWidth] = useState(widthHook[0]);
-  const [theme, setTheme] = useState(themeHook[0]);
+  const [theme] = useState(themeHook[0]);
   const [bugReport, setBugReport] = useState(drawerHook[0]);
 
   const changeTime = setBoundaries(0.05, 0.55, setTime);
