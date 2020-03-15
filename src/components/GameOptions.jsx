@@ -100,7 +100,7 @@ function GameOptions(props) {
       color: textColor
     },
     dividerColor: {
-      backgroundColor: textColor
+      backgroundColor: theme === 'light' ? 'black' : 'grey'
     }
   }));
 
