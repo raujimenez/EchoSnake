@@ -16,7 +16,7 @@ function Alert(props) {
 }
 
 
-export default function BugReport(props) {
+export default function BugReportDialog(props) {
   const { open, onClose, theme } = props;
 
   const [text, setText] = useState("");

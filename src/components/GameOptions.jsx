@@ -10,16 +10,18 @@ import {
   Button
 } from "@material-ui/core";
 
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import BugReportIcon from "@material-ui/icons/BugReport";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import GitHubIcon from "@material-ui/icons/GitHub";
+import {
+  ChevronLeft,
+  BugReport,
+  Twitter,
+  Instagram,
+  GitHub
+} from "@material-ui/icons";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import "./styles/GameOptions.css";
-import BugReport from "./BugReport.jsx";
+import BugReportDialog from "./BugReportDialog.jsx";
 
 function GameOptions(props) {
   // game settings should update gameboard so we need context
@@ -100,15 +102,15 @@ function GameOptions(props) {
       color: textColor
     },
     dividerColor: {
-      backgroundColor: theme === 'light' ? 'black' : 'grey'
+      backgroundColor: theme === "light" ? "black" : "grey"
     }
   }));
 
   const classes = useStyles();
 
   function chevronClick() {
-    setTimeHook(timeHook[0] - 1000)
-    setDrawerHook(false)
+    setTimeHook(timeHook[0] - 1000);
+    setDrawerHook(false);
   }
 
   return (
@@ -121,7 +123,7 @@ function GameOptions(props) {
       >
         <div>
           <IconButton onClick={chevronClick}>
-            <ChevronLeftIcon style={{ fill: svgFill }} />
+            <ChevronLeft style={{ fill: svgFill }} />
           </IconButton>
         </div>
         <Divider classes={{ root: classes.dividerColor }} />
@@ -209,7 +211,7 @@ function GameOptions(props) {
           <br />
           <div style={{ textAlign: "center" }}>
             <Button onClick={handleBugReportClick}>
-              <BugReportIcon style={{ marginRight: "5px", fill: svgFill }} />
+              <BugReport style={{ marginRight: "5px", fill: svgFill }} />
               <Typography
                 style={{ color: textColor }}
                 variant="h7"
@@ -235,16 +237,16 @@ function GameOptions(props) {
             <br />
             <span>
               <Button href="https://github.com/raujimenez" target="_blank">
-                <GitHubIcon style={{ fill: svgFill }} />
+                <GitHub style={{ fill: svgFill }} />
               </Button>
               <Button href="https://twitter.com/raulrusty" target="_blank">
-                <TwitterIcon style={{ fill: svgFill }} />
+                <Twitter style={{ fill: svgFill }} />
               </Button>
               <Button
                 href="https://www.instagram.com/raulrusty"
                 target="_blank"
               >
-                <InstagramIcon style={{ fill: svgFill }} />
+                <Instagram style={{ fill: svgFill }} />
               </Button>
             </span>
             <br />
@@ -263,7 +265,7 @@ function GameOptions(props) {
           <br />
         </div>
       </Drawer>
-      <BugReport open={bugReport} onClose={setBugReport} theme={themeHook[0]}/>
+      <BugReportDialog open={bugReport} onClose={setBugReport} theme={themeHook[0]} />
     </div>
   );
 }
