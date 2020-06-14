@@ -3,8 +3,8 @@ So if you want to extend this project, simply run `npm start`.
 
 # Background
 I wanted to learn react, more specifically functional components in react, and so I implemented a simple snake game.
-Building the snake game was kinda boring so I added a mechanic that is similar to the Ekko (league of legends character).
-
+Building the snake game was kinda boring so I added a mechanic that is similar to the Ekko (league of legends character). 
+Press space to deploy a portal and press space again to teleport back!
 ## Gettings Started
 `npm install`
 `npm start`
